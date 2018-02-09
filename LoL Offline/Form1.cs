@@ -18,213 +18,72 @@ namespace LoL_Offline
             InitializeComponent();
         }
 
+        private void blockRegion(string Ip)
+        {
+
+            var createRule =
+                new ProcessStartInfo("c:\\windows\\system32\\netsh.exe",
+                $"advfirewall firewall add rule name = \"N3RLoLOffline\" dir =out remoteip = {Ip} protocol = TCP action = block")
+                {
+                    UseShellExecute = true,
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    Verb = "runas"
+                };
+
+            try
+            {
+                Process.Start(createRule);
+            }
+            catch (Win32Exception) { }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             var blockedRegion = RegionChosen();
-            if (RegionBox.SelectedItem == "EUW")
+            if (blockedRegion == "EUW")
             {
-                var createRule_EUW =
-                    new ProcessStartInfo("c:\\windows\\system32\\netsh.exe",
-                    "advfirewall firewall add rule name = \"N3RLoLOffline\" dir =out remoteip = 185.40.64.69 protocol = TCP action = block")
-                    {
-                        UseShellExecute = true,
-                        WindowStyle = ProcessWindowStyle.Hidden,
-                        Verb = "runas"
-                    };
-
-                try
-                {
-                    Process.Start(createRule_EUW);
-                }
-                catch (Win32Exception) { }
-
+                blockRegion("185.40.64.69");
+               
+            }
+            if (blockedRegion == "NA")
+            {
+                blockRegion("192.64.174.69");
             }
 
-            if (RegionBox.SelectedItem == "NA")
+            if (blockedRegion == "EUNE")
             {
-                var createRule_NA =
-                    new ProcessStartInfo("c:\\windows\\system32\\netsh.exe",
-                    "advfirewall firewall add rule name = \"N3RLoLOffline\" dir =out remoteip = 192.64.174.69 protocol = TCP action = block")
-                    {
-                        UseShellExecute = true,
-                        WindowStyle = ProcessWindowStyle.Hidden,
-                        Verb = "runas"
-                    };
-
-                try
-                {
-                    Process.Start(createRule_NA);
-                }
-                catch (Win32Exception) { }
-
+                blockRegion("185.40.64.110");
             }
 
-            if (RegionBox.SelectedItem == "EUNE")
+            if (blockedRegion == "OCE")
             {
-                string EUNE_IP = "";
-                var createRule_EUNE =
-                        new ProcessStartInfo("c:\\windows\\system32\\netsh.exe",
-                        "advfirewall firewall add rule name = \"N3RLoLOffline\" dir =out remoteip = " + EUNE_IP + " protocol = TCP action = block")
-                        {
-                            UseShellExecute = true,
-                            WindowStyle = ProcessWindowStyle.Hidden,
-                            Verb = "runas"
-                        };
-
-                try
-                {
-                    Process.Start(createRule_EUNE);
-                }
-                catch (Win32Exception) { }
-
+                blockRegion("192.64.169.20");
             }
 
-            if (RegionBox.SelectedItem == "OCE")
+            if (blockedRegion == "LAS")
             {
-                string OCE_IP = "";
-                var createRule_OCE =
-                        new ProcessStartInfo("c:\\windows\\system32\\netsh.exe",
-                        "advfirewall firewall add rule name = \"N3RLoLOffline\" dir =out remoteip = " + OCE_IP + " protocol = TCP action = block")
-                        {
-                            UseShellExecute = true,
-                            WindowStyle = ProcessWindowStyle.Hidden,
-                            Verb = "runas"
-                        };
-
-                try
-                {
-                    Process.Start(createRule_OCE);
-                }
-                catch (Win32Exception) { }
-
+                blockRegion("66.151.33.28");
             }
 
-            if (RegionBox.SelectedItem == "LAS")
+            if (blockedRegion == "LAN")
             {
-                string LAS_IP = "";
-                var createRule_LAS =
-                        new ProcessStartInfo("c:\\windows\\system32\\netsh.exe",
-                        "advfirewall firewall add rule name = \"N3RLoLOffline\" dir =out remoteip = " + LAS_IP + " protocol = TCP action = block")
-                        {
-                            UseShellExecute = true,
-                            WindowStyle = ProcessWindowStyle.Hidden,
-                            Verb = "runas"
-                        };
-
-                try
-                {
-                    Process.Start(createRule_LAS);
-                }
-                catch (Win32Exception) { }
-
+                blockRegion("66.151.33.24");
             }
 
-            if (RegionBox.SelectedItem == "LAN")
+            if (blockedRegion == "BR")
             {
-                string LAN_IP = "";
-                var createRule_LAN =
-                        new ProcessStartInfo("c:\\windows\\system32\\netsh.exe",
-                        "advfirewall firewall add rule name = \"N3RLoLOffline\" dir =out remoteip = " + LAN_IP + " protocol = TCP action = block")
-                        {
-                            UseShellExecute = true,
-                            WindowStyle = ProcessWindowStyle.Hidden,
-                            Verb = "runas"
-                        };
-
-                try
-                {
-                    Process.Start(createRule_LAN);
-                }
-                catch (Win32Exception) { }
-
+                blockRegion("66.151.33.20");
             }
 
-            if (RegionBox.SelectedItem == "BR")
+            if (blockedRegion == "TUR")
             {
-                string BR_IP = "";
-                var createRule_BR =
-                        new ProcessStartInfo("c:\\windows\\system32\\netsh.exe",
-                        "advfirewall firewall add rule name = \"N3RLoLOffline\" dir =out remoteip = " + BR_IP + " protocol = TCP action = block")
-                        {
-                            UseShellExecute = true,
-                            WindowStyle = ProcessWindowStyle.Hidden,
-                            Verb = "runas"
-                        };
-
-                try
-                {
-                    Process.Start(createRule_BR);
-                }
-                catch (Win32Exception) { }
-
+                blockRegion("185.40.64.105");
             }
 
-            if (RegionBox.SelectedItem == "TUR")
+            if (blockedRegion == "RUS")
             {
-                string TUR_IP = "";
-                var createRule_TUR =
-                        new ProcessStartInfo("c:\\windows\\system32\\netsh.exe",
-                        "advfirewall firewall add rule name = \"N3RLoLOffline\" dir =out remoteip = " + TUR_IP + " protocol = TCP action = block")
-                        {
-                            UseShellExecute = true,
-                            WindowStyle = ProcessWindowStyle.Hidden,
-                            Verb = "runas"
-                        };
-
-                try
-                {
-                    Process.Start(createRule_TUR);
-                }
-                catch (Win32Exception) { }
-
+                blockRegion("185.40.64.99");
             }
-
-            if (RegionBox.SelectedItem == "RUS")
-            {
-                string RUS_IP = "";
-                var createRule_RUS =
-                        new ProcessStartInfo("c:\\windows\\system32\\netsh.exe",
-                        "advfirewall firewall add rule name = \"N3RLoLOffline\" dir =out remoteip = " + RUS_IP + " protocol = TCP action = block")
-                        {
-                            UseShellExecute = true,
-                            WindowStyle = ProcessWindowStyle.Hidden,
-                            Verb = "runas"
-                        };
-
-                try
-                {
-                    Process.Start(createRule_RUS);
-                }
-                catch (Win32Exception) { }
-
-            }
-
-            //var createRule_NA =
-            //    new ProcessStartInfo("c:\\windows\\system32\\netsh.exe",
-            //    "advfirewall firewall add rule name = \"N3RLoLOffline\" dir =out remoteip = 192.64.174.69 protocol = TCP action = block")                {
-            //        UseShellExecute = true,
-            //        WindowStyle = ProcessWindowStyle.Hidden,
-            //        Verb = "runas"
-            //  };
-
-            //        var enableRule =
-            //            new ProcessStartInfo("c:\\windows\\system32\\cmd.exe",
-            //            "/Q /C netsh advfirewall firewall add rule name = \"N3RLoLOffline\" dir =out remoteip = 185.40.64.69 protocol = TCP action = block" +
-            //            " & " +
-            //            "netsh advfirewall firewall set rule name=\"N3RLoLOffline\" new enable=yes")
-            //            {
-            //                UseShellExecute = true,
-            //                Verb = "runas"
-            //            };
-            //
-            //Process.Start(enableRule);
-
-
-            //try
-            //{
-            //    Process.Start(createRule_NA);
-            //}
-            //catch (Win32Exception) { }
 
         }
 
